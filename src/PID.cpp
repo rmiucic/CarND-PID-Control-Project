@@ -48,7 +48,7 @@ void PID::Init(double str_Kp_, double str_Ki_, double str_Kd_, double spd_Kp_, d
   time_step=1;
   stabilize_steps = 100;
   twidle_step_cnt = 1500;
-  twiddle_flag = true;
+  twiddle_flag = false;
   first_run = true;
   par_index = 0;
   tried_adding = tried_subtracting = false;
@@ -84,7 +84,7 @@ void PID::UpdateError(double cte, double spd_dif)
     cout << "run_err: " << run_err << endl;
     if (run_err < best_err)
     {
-      cout << "Improvement!" << endl;
+      cout << "Improvement!" << " P: " << str_K[0] << ", I: " << str_K[1] << ", D: " << str_K[2] << endl;
       best_err = run_err;
       // next parameter
       if(time_step != (stabilize_steps + twidle_step_cnt))
@@ -117,8 +117,8 @@ void PID::UpdateError(double cte, double spd_dif)
       tried_adding = tried_subtracting = false;
     }
 
-    cout << "new parameters" << endl;
-    cout << "P: " << str_K[0] << ", I: " << str_K[1] << ", D: " << str_K[2] << endl;        
+    //cout << "new parameters" << endl;
+    //cout << "P: " << str_K[0] << ", I: " << str_K[1] << ", D: " << str_K[2] << endl;        
 
     run_err = 0; // clear run error 
   } /*(twiddle_flag == true)*/

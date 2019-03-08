@@ -1,7 +1,40 @@
 # CarND-Controls-PID
-Self-Driving Car Engineer Nanodegree Program
+
+### Discussion
+My code compiles and runs well. I have used Netbeans IDE. 
+I have implemented two controllers: for speed and steering control. For stering control I am using Cross Track Error (CTE). CTE is a lateral distance between vehicle position and center of the lane. For speed controller I am the differnce in speed from a set speed (variable I added and set to 40MPH) and actual vehicle speed (a value coming from the simulator). I have introduced controler sequentially. 
+1) First, I left throtle value at 0.3  and implemented PID controlled for steering control 
+```C++
+msgJson["throttle"] = 0.3;
+``` 
+I have manually tuned stering controller. The values were
+ 
+```C++
+Kp=0.1; Ki=0.0001, Kd=1.0; //for initial steering PID
+``` 
+these values ensured that the car was able to travel the path without going off the track.
+2) I added speed PID controller and manually tuned parameters.
+```C++
+Kp=1; Ki=0.0, Kd=0.001; //for speed PID
+``` 
+now the speed was always around 39.6MPH (slightly bellow set speed) which was good enough for me and I did not tune the speed PID controlled further.
+3) I have implmented a twiddle algorithm mainly from the udacity lecture notes and some other references I found online. 
+```C++
+stabilize_steps = 100;
+twidle_step_cnt = 1500;
+``` 
+Twiddle algorithm was executed every 1600 time steps. Given the speed the car was driving, 1600 time steps ensured that the vehicle travelled 1 full loop (it would heve been nice if the simulation provided x,y positions so that I did not have to guess how many time steps needed to complete the loop). For a given loop, the only after stabilization period, 100 time steps, error was counted in  total error. 
+After 50 loops, Final PID coefficient values for steering PID came to be:
+```C++
+Kp=0.209078; Ki=0.000137587, Kd=1.61051; //for speed PID
+``` 
+For the final confirmation please see the screen capture video simulation_run.mp4 within this repository.
 
 ---
+
+---
+
+##  From Udacity ReadMe Original File 
 
 ## Dependencies
 

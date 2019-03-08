@@ -39,7 +39,7 @@ int main() {
    */
   //pid.Init(1.0, 1.0, 1.0);
   //P: 0.14641, I: 0.000101981, D: 1.1  time_step: 36800
-  pid.Init(0.1, 0.0001, 1, 1, 0.0, 0.001);
+  pid.Init(0.14641, 0.000101981, 1.1, 1, 0.0, 0.001);
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                      uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
