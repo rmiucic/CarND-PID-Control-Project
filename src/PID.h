@@ -57,12 +57,18 @@ class PID
   //double dp_Kp;
   //double dp_Ki;
   //double dp_Kd;
-  double dp_str_K[3];  //0-P, 1-I, and 2-D errors for steering control
+  double dp[3];  //0-P, 1-I, and 2-D errors for steering control
   
   int time_step;
   int stabilize_steps;
-  int twidle_sep_cnt;
+  int twidle_step_cnt;
   bool twiddle_flag;
+  bool first_run;
+  int par_index;
+  bool tried_adding;
+  bool tried_subtracting;
+  double best_err;
+  double run_err;
 };
 
 #endif  // PID_H

@@ -38,6 +38,7 @@ int main() {
    * TODO: Initialize the pid variable.
    */
   //pid.Init(1.0, 1.0, 1.0);
+  //P: 0.14641, I: 0.000101981, D: 1.1  time_step: 36800
   pid.Init(0.1, 0.0001, 1, 1, 0.0, 0.001);
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                      uWS::OpCode opCode) {
@@ -94,27 +95,27 @@ int main() {
           
 
           // DEBUG
-          std::cout << "CTE: " 
-                    << std::left
-                    << std::setw(9) 
-                    << cte 
-                    << "Steer:" 
-                    << std::left
-                    << std::setw(11) 
-                    << 100*steer_value
-                    << "Step:"
-                    << std::left
-                    << std::setw(6) 
-                    << pid.time_step 
-                    << "Speed:"
-                    << std::left
-                    << std::setw(9) 
-                    << speed
-                    << "Throtle:"
-                    << std::left
-                    << std::setw(9) 
-                    << throtle_value
-                    << std::endl;
+          //std::cout << "CTE: " 
+          //          << std::left
+          //          << std::setw(9) 
+          //          << cte 
+          //          << "Steer:" 
+          //          << std::left
+          //          << std::setw(11) 
+          //          << 100*steer_value
+          //          << "Step:"
+          //          << std::left
+          //          << std::setw(6) 
+          //          << pid.time_step 
+          //          << "Speed:"
+          //          << std::left
+          //          << std::setw(9) 
+          //          << speed
+          //          << "Throtle:"
+          //          << std::left
+          //          << std::setw(9) 
+          //          << throtle_value
+          //          << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
